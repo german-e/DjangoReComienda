@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+	Eliminar Usuario
+{% endblock %}
+
+{% block contenido %}
+
+<form method="POST">
+	{% csrf_token %}
+		<div class="row">
+		<div class="col s4">	
+		</div>
+	    <div class="col s8 m4">
+	      <div class="center card red darken-1">
+	        <div class="card-content white-text">
+	          <span class="center card-title">ELIMINAR PERFIL</span>
+	          <p class="center"> ¿Está seguro que desa elimnar su perfil de la página? <br>
+	           Este paso no se puede deshacer. Se perderán sus publicaciones hechas</p>
+	        </div>
+	        <div class="card-action center">
+	          <button class="btn waves-effect waves-light red" type="submit" name="action">Aceptar
+    			<i class="material-icons right">send</i>
+  				</button>
+	          <a href="{% url 'ver_perfil' request.user.id %}"><button class="btn waves-effect waves-dark" type="submit" name="action">Cancelar
+    			<i class="material-icons right">cancel</i></a>
+	        </div>
+	      </div>
+	    </div>
+	  </div>
+  </form>
+
+{% endblock %}

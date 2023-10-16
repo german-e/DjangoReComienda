@@ -1,0 +1,135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="auto">
+<head>
+ 
+  {% include 'partials/head.html' %}
+
+  
+
+ </head>
+
+<body>
+  <header>
+
+    {% include 'partials/navbar.html' %}
+
+    <!--
+      <div>
+        <ul id="dropdown1" class="dropdown-content">
+          <li><a href="{% url 'anuncio_nuevo' %}">Soy viajante</a></li>
+          <li><a href="{% url 'nuevo_anuncio' %}">Soy transportista</a></li>
+        </ul>
+        
+      <nav class="white" role="navigation" >
+      <div class="nav-wrapper purple darken-4" > 
+        <a href="{% url 'index' %}" class="brand-logo" style="margin: 0;"> <img style="width: 80px; height: 80px; vertical-align: middle;" src="{% static 'img/rt.png' %}" alt="logo Recomienda">ReComienda</a>
+        <ul class="right hide-on-med-and-down">
+          {% if request.user.is_authenticated %}
+          {% if request.user.foto %}
+          <a href="{% url 'ver_perfil' request.user.id %}" class="brand-logo right"><img class="circle foto-perfil-esquina" src="{{ request.user.foto.url }}" style=" height: 40px; width: 40px"></a>
+          {% else %}
+          <a href="{% url 'ver_perfil' request.user.id %}" class="brand-logo right"><img class="circle foto-perfil-esquina" src="{% static 'img/pordefecto.jpg' %}" style=" height: 40px; width: 40px"></a>
+          {% endif%}
+          <li><a href="{% url 'ver_anuncios' %}"> <i class="material-icons left">remove_red_eye</i>Ver Anuncios</a></li>
+          <li><a href="{% url 'cerrar_sesion' %}"><i class="material-icons left">exit_to_app</i>Cerrar sesión</a></li>
+          <li><a class="dropdown-trigger" href="#" data-target="dropdown1">Crear Anuncio<i class="material-icons right">arrow_drop_down</i></a></li>
+          
+          {% else %}
+          <li><a href="{% url 'iniciar_sesion' %}"><i class="material-icons left">account_box</i>Iniciar Sesion</a></li>
+          <li><a href="{% url 'nuevo_usuario' %}">Registrarse</a></li>        
+           </ul>
+          {% endif %}      
+       
+      </div>
+    </nav>
+  -->
+      </header>
+
+      {% include 'partials/header.html' %}
+
+  
+      <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
+        <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center" id="bd-theme" type="button"
+          aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)">
+          <svg class="bi my-1 theme-icon-active" width="1em" height="1em">
+            <use href="#circle-half"></use>
+          </svg>
+          <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
+        </button>
+    
+        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light"
+              aria-pressed="false">
+              <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+                <use href="#sun-fill"></use>
+              </svg>
+              Light
+              <svg class="bi ms-auto d-none" width="1em" height="1em">
+                <use href="#check2"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark"
+              aria-pressed="false">
+              <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+                <use href="#moon-stars-fill"></use>
+              </svg>
+              Dark
+              <svg class="bi ms-auto d-none" width="1em" height="1em">
+                <use href="#check2"></use>
+              </svg>
+            </button>
+          </li>
+          <li>
+            <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto"
+              aria-pressed="true">
+              <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em">
+                <use href="#circle-half"></use>
+              </svg>
+              Auto
+              <svg class="bi ms-auto d-none" width="1em" height="1em">
+                <use href="#check2"></use>
+              </svg>
+            </button>
+          </li>
+        </ul>
+      </div>
+    
+
+
+  <main>
+
+    {% block contenido %}
+    {% endblock %}
+
+ </main>
+
+  
+  <!--FOOTER-->
+  <hr>
+    <footer>
+    <div class="footer-copyright">
+            <div class="container" style="background-color: white">
+            &copy; Desarrollado por Alumnos del Informatorio 2020 | Comision 7 | Grupo 1 | Todos los derechos reservados
+        
+            <a href="{% url 'index' %}">ReComienda</a>
+            </div>
+          </div>
+      
+    </footer>
+    <!--FIN FOOTER-->
+<!--  Scripts-->
+  <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+  
+  <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'js/iniciosesion.js' %}"></script>
+</body>
+  
+
+
+  
+</html>

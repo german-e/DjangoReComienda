@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulonavegador %}
+    Editar Anuncio
+{% endblock %}
+
+{% block contenido %}
+
+<div class="row">
+	<div class="center col s1">
+
+		<img class="responsive-img" src="{% static 'img/editar.png' %}">
+		<h5>Editar Anuncio</h5>
+	</div>
+
+	
+
+	<div class="col s11">
+		
+	
+
+
+    <form method="POST">
+        {% csrf_token %}
+
+
+
+        {{ form }}
+
+
+
+
+        
+        <button type="submit">Guardar</button>
+    </form>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

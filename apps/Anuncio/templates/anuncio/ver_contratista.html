@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulonavegador %}
+Anuncio : {{anuncio.titulo}}
+{% endblock %}
+
+{% block contenido %}
+ <div class="container">
+<div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+            <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="{% static 'img/rt.png' %}">
+            </div>
+              <div class="card-content">
+                <span class="card-title activator grey-text text-darken-4">{{ anuncio.titulo}}<i class="material-icons right">more_vert</i></span>
+                <p><a title="Enviar mensaje" href="https://web.whatsapp.com/send?phone=54{{anuncio.telefono}}&text=Hola%2C+%C2%BFC%C3%B3mo+est%C3%A1s%3F" target="nombre_marco"><img src="{% static 'img/whatsapp-logo.png' %}" img style="width: 40px; height: 40px; vertical-align: middle;" alt="WhatsApp" /></a></p>              
+                {{ anuncio.usuario.username}}
+                 <p><a href="mailto:ReComienda@Recomienda.com,rrhh@Gmail.com? subject=ReComienda"title="Vinculo de correo electronico">{{anuncio.E_mail}}</a></p>
+              </div>
+                <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">{{anuncio.titulo}}<i class="material-icons right">close</i>
+          <p>{{anuncio.descripcion}}</p><br>
+          <p>Tel: {{anuncio.telefono}}</p><br>
+          <hr>
+          <p>Localidad Origen: {{anuncio.localidad_origen}}</p>
+          <p>Localidad Destino: {{anuncio.localidad_destino}}</p>
+          <p style="text-align: right">{{anuncio.fecha_publicacion}}</p>
+          <a href="{% url 'ver_contratista' anuncio.id %}" title="vinculo a contacto" style="text-align: right"><p style="text-align: right">VER ANUNCIO</p></a>
+          </div>
+          </div>
+        </div>    
+  </div></div>
+  
+            {% if request.user == anuncio.usuario%}<div class="row opciones-box">
+                <form method="POST" action="{%url 'borrar_anuncioT' anuncio.id%}">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('Seguro?')" class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">delete</i></button>
+                </form> </div>
+                 <div class="col s2">
+                
+                <a href="{%url 'editar_anuncioC' anuncio.id %}" class="btn-floating btn-large waves-effect waves-light "><i class="material-icons">edit</i></a>
+                  
+            </div>
+            {% endif %}
+         
+<hr>                   
+<hr>
+  <h5>OTROS ANUNCIOS</h5>
+  {% include 'anuncio/cuadricula_contratista.html' with lista_anuncio=lista_anuncio %}
+
+{% endblock %}

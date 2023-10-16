@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulonavegador %}
+  {% if operacion == 'CREAR' %}
+        Nuevo Anuncio
+    {% else %}
+        Editar Anuncio
+    {% endif %}
+  {% endblock %}<br>
+
+  </title>
+    <link href="{% static 'css/anuncio_nuevo.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+  <div id="container">
+  <h1>&bull; ReComienda &bull;</h1>
+  <div class="underline">
+  </div>
+  <div class="icon_wrapper">
+    <svg class="icon" viewBox="0 0 145.192 145.192">
+      <path d="">
+      <a href="#!" class="brand-logo" style="margin: 0;"> <img style="width: 80px; height: 80px; vertical-align: middle;display:block; margin:auto;" src="{% static 'img/rt.png' %}" alt="logo Recomienda">
+    </svg>
+  </div>
+  <form method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+    {{ form.as_p }}
+    <!-- <div class="name">
+      <label for="name"></label>
+      {{ form.nombre }}
+      la{{ form.nombre.error }}
+    </div>
+    
+    <div class="email">
+      <label for="email"></label>
+      {{ form.Email }}
+    </div> <br/>
+  
+    <div class="subject" style="color: #26A69A">
+      LOCALIDAD ORIGEN
+      {{ form.localidad_origen }}
+    </div>
+    <div class="subject" style="color: #26A69A">
+     LOCALIDAD DESTINO
+      {{ form.localidad_destino }}
+    </div>
+ 
+    {{ form.titulo }}
+    <div class="message">
+      <label for="message"></label>
+      {{ form.descripcion }}
+    </div>
+   <div class="telephone" style="color: #26A69A">
+        {{form.tel}}
+    
+    </div> -->
+    
+    {% form. %}
+    <div class="submit">
+      <button type="submit" value="Crear Anuncio" id="form_button" >
+
+  {% if operacion == 'CREAR' %}
+                Crear
+            {% else %}
+                Guardar
+            {% endif %}</button>
+    </div>
+  </form><!-- // End form -->
+</div><!-- // End #container -->
+</body>
+</html>
+{% endblock %}

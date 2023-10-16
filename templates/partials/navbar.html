@@ -1,0 +1,23 @@
+{% load static %}
+
+    <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-2 px-3 border-bottom shadow-sm">
+      <div class="col-md-3 mb-4 mb-md-0">
+        <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
+          <img src="{% static 'img/apple-touch-icon.png' %}" width="50px"/>
+        </a>
+      </div>
+
+      <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        
+        <li><a href="#" class="nav-link px-2 text-white">Home</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">Contac us</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">FAQs</a></li>
+        <li><a href="#" class="nav-link px-2 text-white">Info</a></li>
+      </ul>
+
+      <div class="col-md-3 text-end">
+        <a href="{% url 'iniciar_sesion' %}" class="btn btn-outline-primary me-2">Iniciar Sesión</a>
+        <button type="button" class="btn btn-primary"><a href="#" class="text-reset text-decoration-none">Registrarse</a></button>
+      </div>
+    </header>
+  

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% load static %}
+{% block contenido %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block titulonavegador %}
+  {% if operacion == 'CREAR' %}
+        Nuevo Anuncio
+    {% else %}
+        Editar Anuncio
+    {% endif %}
+  {% endblock %}<br>
+  </title>
+  <link href="{% static 'css/anuncio_nuevo.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+</head>
+<body>
+
+  <div id="container">
+  <h1>&bull; ReComienda &bull;</h1>
+  <div class="underline">
+  </div>
+  <div class="icon_wrapper">
+    <svg class="icon" viewBox="0 0 145.192 145.192">
+      <path d="">
+      <a href="#!" class="brand-logo" style="margin: 0;"> <img style="width: 80px; height: 80px; vertical-align: middle;display:block; margin:auto;" src="{% static 'img/rt.png' %}" alt="logo Recomienda">
+    </svg>
+  </div>
+  <form method="POST" enctype="multipart/form-data" >
+    {% csrf_token %}
+    
+    <!--{{ form.as_p }}-->  
+    
+
+    <div class="name">
+      <label for="name">nombre</label>
+      {{ form.nombre }}
+    </div>
+
+    <div class="email">
+      <label for="email">Email</label>
+      {{ form.E_mail }}
+    </div> <br/>
+  
+    <div class="subject" style="color: #26A69A">
+      LOCALIDAD ORIGEN
+      {{ form.localidad_origen }}
+    </div>
+
+    <div class="subject" style="color: #26A69A">
+     LOCALIDAD DESTINO
+      {{ form.localidad_destino }}
+    </div>
+    RECORRIDO
+    {{ form.recorrido }}<br><br>
+    TITULO
+    {{ form.titulo }}
+
+
+    <div class="message">
+      <label for="message">Descripcion</label>
+      {{ form.descripcion }}
+    </div>
+<fieldset style="color: #26A69A">
+  <legend>TRANSPORTE</legend>
+  <p>Medio de Transporte:
+    {{ form.transporte }}
+  </p>
+</fieldset><br><br>
+    <div class="input-field col s12" style="color: #26A69A">
+    {{ form.fecha_caducidad }}
+    </div>
+     <div class="telephone" style="color: #26A69A">
+
+        TELEFONO
+      {{form.telefono}}
+
+  
+  
+    </div>
+<div>
+    <label>
+      {{ form.permitir_comentarios }}
+      <span>Permitir Comentarios</span>
+      </label> 
+    </div>
+
+    {{ form.errors }}
+    <div class="submit">
+      <button type="submit" value="Crear Anuncio" id="form_button" >
+
+  {% if operacion == 'CREAR' %}
+                Crear
+            {% else %}
+                Guardar
+            {% endif %}</button>
+    </div>
+  </form><!-- // End form -->
+</div><!-- // End #container -->
+</body>
+</html>
+{% endblock %} 

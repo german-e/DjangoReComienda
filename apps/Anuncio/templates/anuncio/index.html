@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block contenido %}
+
+<!-- <div id="index-banner" class="parallax-container">
+  <div class="section no-pad-bot">
+    <div class="container">
+      <br><br>
+      <h1 class="header center teal-text text-lighten-2">Publica tus Anuncios GRATIS</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">Espacio para Banner (tiene un costo)</h5>
+        <h5 class="header col s12 light">CONTACTANOS: ReComienda@ReComienda.com</h5>
+      </div>
+      <br><br>
+    </div>
+    <div class="parallax">
+      <img class="img-fluid" src="{% static 'img/camino.jpg' %}" alt="Unsplashed background img 1">
+    </div>
+  </div>
+</div> -->
+
+
+
+<div class="row">
+
+  
+  
+    
+    <div class="row center">
+      <h5 class="header col s12 light">En ReComienda, trabajamos para conectar la provincia del Chaco con los servicios
+        que necesitan los chaqueños.</h5>
+    </div>
+    <div class="row center">
+
+      {% include "anuncio/search_form.html"%}
+      
+    </div>
+    
+    
+  
+</div>
+
+
+<hr>
+<div class="row">
+  <div class="container col 6">
+
+
+    <h5>ANUNCIOS CONTRATISTAS</h5>
+    {% include 'anuncio/cuadricula_contratista.html' with lista_anuncio=lista_anuncio %}
+  </div>
+</div>
+
+<hr>
+
+<div class="row">
+  <div class="container col 12">
+    <h5>ANUNCIOS TRANSPORTISTAS</h5>
+    {% include 'anuncio/anuncio_cuadricula.html' with lista_anuncio=lista_anuncio %}
+  </div>
+</div>
+
+
+{% endblock %}

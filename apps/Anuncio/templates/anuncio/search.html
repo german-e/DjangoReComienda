@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulonavegador %}
+Buscar
+{% endblock %}
+
+{% block contenido %}
+<link href="{% static 'css/boton.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+<form action="" >
+{{ search_form }}
+
+<button class="btn waves-effect waves-light" type="submit">
+   <i class="material-icons">search</i>
+</button>
+
+</form>
+
+<h1>Resultado</h1>
+{% include 'anuncio/anuncio_cuadricula.html' with lista_anuncio=lista_anuncio %}
+{% include 'anuncio/cuadricula_contratista.html' with lista_anuncio=lista_contrato %}
+{# include 'anuncio/anuncio_cuadricula.html' with lista_anuncio=anuncio #}
+{% endblock %}

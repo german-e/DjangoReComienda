@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulonavegador %}
+    Editar mi perfil
+{% endblock %}
+
+{% block contenido %}
+
+<div class="row">
+
+    
+
+    <form method="POST" enctype="multipart/form-data">
+
+        <div class="col s6 center"> 
+            <h5>Editar Perfil</h6>
+                    
+                <img src="{{perfil.foto.url}}" alt="foto Pefil" class="perfil-img-circle responsive-img z-depth-3"> <!-- notice the "circle" class -->
+                
+           
+
+        </div>
+
+
+
+       
+        <div class="col s6">
+       
+        {% csrf_token %}
+        {% if form.non_field_errors %}
+        {% for error in form.non_field_errors %}
+            <p>{{error}}</p>
+        {% endfor %}
+        {% endif %}
+        
+            {% for f in form %}
+            {{ f.label_tag }} 
+            {{f}} 
+            {{f.errors |striptags }}
+            {% endfor %}
+        <div class="row center">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Guardar
+                <i class="material-icons right">save</i>
+            </button>
+        </div>
+        <!--
+        <button type="submit">Guardar</button>
+        -->
+    </div>
+
+
+    </form>
+
+</div>
+
+{% endblock %}

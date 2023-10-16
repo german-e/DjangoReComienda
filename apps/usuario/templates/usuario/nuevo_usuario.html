@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block titlehead %}
+        Crear Usuario
+    {% endblock %}
+
+{% block contenido %}
+ <div class="container">
+      <div class="row">
+        <div class="col s12">
+          <div class="card">
+<h1>Nuevo Usuario</h1>
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+  
+            {{ form.as_p }}
+    <button type="submit">Registrarme</button>
+</form>
+		</div>
+  <a href="{% url 'iniciar_sesion' %}">Iniciar Sesion</a>
+	</div>
+</div>
+</div>
+
+{% endblock %}

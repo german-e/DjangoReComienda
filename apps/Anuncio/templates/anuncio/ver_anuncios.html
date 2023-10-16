@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block titulonavegador %}
+Anuncio : {{anuncio.titulo}}
+{% endblock %}
+
+{% block contenido %}
+<link href="{% static 'css/boton.css' %}" type="text/css" rel="stylesheet" media="screen,projection"/>
+<div class="row center">
+   {% include "anuncio/search_form.html"%}     
+</div><br></div>
+<div class="row">
+<div class="container col 6">      
+    <h5>ANUNCIOS CONTRATISTAS</h5>
+      {% include 'anuncio/cuadricula_contratista.html' with lista_anuncio=lista_contrato %}
+  </div>
+</div></div></div>
+
+<div class="row">
+	<div class="container col 12" >
+    <h5>ANUNCIOS TRANSORTISTAS</h5>  
+      {% include 'anuncio/anuncio_cuadricula.html' with lista_anuncio=lista_anuncio %}
+    </div>
+</div></div>
+
+{% endblock %}
