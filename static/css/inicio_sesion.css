@@ -1,6 +1,9 @@
-body {
+html,
+body,
+main {
   height: 100%;
 }
+
 .titulo{
   font-size: 48px;
   text-decoration: dashed;

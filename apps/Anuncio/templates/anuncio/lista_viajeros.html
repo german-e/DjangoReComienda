@@ -1,0 +1,25 @@
+{% load static %}
+
+{% for anuncio in lista_anuncio %}
+
+  <div class="card" style="width: 18rem;">
+    <img src="{% static 'img/viajante.jpg' %}" class="card-img-top" alt="Imagen del creador del anuncio">
+    <div class="card-body">
+      <h5 class="card-title">{{ anuncio.titulo }}</h5>
+      <p class="card-text">{{ anuncio.descripcion }}</p>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">Desde: {{anuncio.localidad_origen}} </li>
+      <li class="list-group-item">Hasta: {{anuncio.localidad_destino}}</li>
+      <li class="list-group-item">Sale: {{ anuncio.fecha_caducidad }}</li>
+    </ul>
+    <div class="card-body">
+      <a href="#" class="card-link">Mas info...</a>
+      <a href="#" class="card-link">Contactar</a>
+    </div>
+  </div>
+
+
+  {% endfor %}
+
+  

@@ -63,17 +63,18 @@ class Anuncio_Trans(models.Model):
 	def __str__(self):
 		return self.titulo"""
 
-class Contratista(models.Model):
+class Viajante(models.Model):
 	titulo = models.CharField(max_length=30)
+	descripcion = models.TextField()
 	fecha_viaje = models.DateTimeField()
-	fecha_lapso = models.DateTimeField()
+	fecha_regreso = models.DateTimeField()
 	localidad_origen = models.ForeignKey(Localidad, on_delete = models.CASCADE, related_name = 'localidad_origen')
 	localidad_destino = models.ForeignKey(Localidad, on_delete = models.CASCADE, related_name = 'localidad_destino')
-	descripcion = models.TextField()
 	usuario = models.ForeignKey(Perfil, on_delete=models.CASCADE, null=True)
-	permitir_comentarios = models.BooleanField(default = True)	
+	permitir_comentarios = models.BooleanField(verbose_name='Comentarios', default = True)	
 	E_mail = models.EmailField(null=True)
-	telefono = models.CharField(max_length=20, null=True, verbose_name="Nro Telefono")
+	telefono = models.CharField(max_length=20, null=True, verbose_name="Teléfono")
+
 
 	def clean(self):
 		start_date = self.fecha_viaje
@@ -105,7 +106,7 @@ class Comentario(models.Model):
     texto=models.TextField(max_length=200)
     fecha_creacion = models.DateTimeField(auto_now_add=True)
 
-class CalificacionPost(models.Model):
+class Calificacion(models.Model):
     anuncio=models.ForeignKey(Anuncio_Trans, on_delete = models.CASCADE, related_name="calificacion")
     usuario=models.ForeignKey(Perfil, on_delete = models.CASCADE, related_name="detalle_calificacion")
     #calificacion=models.IntegerField(validators = [validate_valor_calificacion])

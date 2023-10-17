@@ -1,6 +1,7 @@
 {% load static %}
 
     <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-2 mb-2 px-3 border-bottom shadow-sm">
+
       <div class="col-md-3 mb-4 mb-md-0">
         <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
           <img src="{% static 'img/apple-touch-icon.png' %}" width="50px"/>
@@ -15,9 +16,37 @@
         <li><a href="#" class="nav-link px-2 text-white">Info</a></li>
       </ul>
 
-      <div class="col-md-3 text-end">
+      
+
+
+        {% if request.user.is_authenticated %}
+        
+        <button type="button" class="btn btn-primary flex-end"><a href="#" class="text-reset text-decoration-none">Crear Anuncio</a></button>
+          
+          <div class="flex-shrink-0 dropdown"></div>
+          
+          <a href="#" class="justify-content-end link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            {% if request.user.foto %}
+            <img src="{{ request.user.foto.url }}" alt="foto de perfil" width="32" height="32" class="rounded-circle">
+            {% else %}
+            <img src="{% static 'img/pordefecto.jpg' %}" alt="foto de perfil" width="32" height="32" class="rounded-circle">
+            {% endif %}
+          </a>
+          <ul class="dropdown-menu text-small shadow">
+            <li class="dropdown-item text-muted">{{ user.first_name }} {{ user.last_name }}</li>
+            <li><a class="dropdown-item" href="#">Mis Anuncios</a></li>
+            <li><a class="dropdown-item" href="#">Mi perfil</a></li>
+            <li><a class="dropdown-item" href="#">Configuracion</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Cerrar Sesión</a></li>
+          </ul>
+        </div>
+        {% else %}
+        <div class="col-md-3 text-end">
         <a href="{% url 'iniciar_sesion' %}" class="btn btn-outline-primary me-2">Iniciar Sesión</a>
         <button type="button" class="btn btn-primary"><a href="#" class="text-reset text-decoration-none">Registrarse</a></button>
+
+        {% endif %}
       </div>
     </header>
   

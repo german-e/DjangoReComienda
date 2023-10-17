@@ -3,6 +3,8 @@ from .models import Anuncio_Trans, Contratista,Localidad,Transporte, Comentario 
 from .forms import AnuncioForm, ContratistaForm, ComentarioForm, LocalidadForm, TransporteForm,SearchForm, EditarAnuncioTForm
 from django.contrib.auth.decorators import login_required
 # Create your views here.
+
+
 def index(request):
     if request.GET:
         search_form = SearchForm(request.GET)
@@ -12,30 +14,29 @@ def index(request):
     filtro_titulo = request.GET.get("titulo", "")
     filtro_localidad = request.GET.get("localidad", "")
     orden_anuncio = request.GET.get("orden", None)
-    lista_anuncio = Anuncio_Trans.objects.filter(titulo__icontains = filtro_titulo).filter(localidad_destino__localidad__icontains=filtro_localidad)
-    lista_contrato = Contratista.objects.filter(titulo__icontains = filtro_titulo).filter(localidad_destino__localidad__icontains=filtro_localidad)
+    lista_anuncio_viajero = Anuncio_Trans.objects.filter(titulo__icontains = filtro_titulo).filter(localidad_destino__localidad__icontains=filtro_localidad)
+    lista_anuncio_viajante = Contratista.objects.filter(titulo__icontains = filtro_titulo).filter(localidad_destino__localidad__icontains=filtro_localidad)
     #localidades = Localidad.objects.filter(localidad__icontains = filtro_localidad)
     
     if orden_anuncio == "titulo":
-        lista_anuncio= lista_anuncio.order_by("titulo")
-        lista_contrato= lista_contrato.order_by("titulo")
+        lista_anuncio_viajero= lista_anuncio_viajero.order_by("titulo")
+        lista_anuncio_viajante= lista_anuncio_viajante.order_by("titulo")
     elif orden_anuncio == "localidad":
-        lista_anuncio= lista_anuncio.order_by("localidad_destino")
-        lista_contrato= lista_contrato.order_by("localidad_destino")
+        lista_anuncio= lista_anuncio_viajero.order_by("localidad_destino")
+        lista_contrato= lista_anuncio_viajante.order_by("localidad_destino")
     elif orden_anuncio == "antiguo":
-        lista_anuncio= lista_anuncio.order_by("fecha_publicacion")
-        lista_contrato= lista_contrato.order_by("fecha_viaje")
+        lista_anuncio= lista_anuncio_viajante .order_by("fecha_publicacion")
+        lista_contrato= lista_anuncio_viajero.order_by("fecha_viaje")
     elif orden_anuncio == "nuevo":
-        lista_anuncio= lista_anuncio.order_by("-fecha_publicacion")
-        lista_contrato= lista_contrato.order_by("-fecha_viaje")
+        lista_anuncio= lista_anuncio_viajero.order_by("-fecha_publicacion")
+        lista_contrato= lista_anuncio_viajante.order_by("-fecha_viaje")
 
 
     contexto={ 
-    "lista_anuncio" : lista_anuncio,
-    "lista_contrato": lista_contrato,
-    #"localidades": localidades,
-    "search_form":search_form,
-
+        "lista_viajero" : lista_anuncio_viajero,
+        "lista_viajante": lista_anuncio_viajante,
+        #"localidades": localidades,
+        "search_form":search_form,
     }
     return render(request, "anuncio/index.html", contexto)
 
